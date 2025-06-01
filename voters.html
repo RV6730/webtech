@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Now - Amity University Student Election Portal</title>
+    <link rel="stylesheet" href="election-styles.css">
+    <style>
+        .voting-container {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .candidate-info {
+            flex: 2;
+        }
+        
+        .voting-controls {
+            flex: 1;
+            background-color: #f8f8f8;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .timer {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #d9534f;
+        }
+        
+        .info-button {
+            display: inline-block;
+            background-color: #5bc0de;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 70%;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .close-button {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div>
+                <img src="logo.png" alt="Amity University Logo" width="160">
+                <h1><b>AMITY UNIVERSITY BENGALURU</b></h1>
+                <h2 style="color:white;">Student Election Portal - Cast Your Vote</h2>
+            </div>
+            <div class="user-display">
+                <span id="userDisplay">Welcome, Student!</span>
+                <a href="login.html" class="btn logout-btn">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="main.html">Dashboard</a>
+        <a href="election.html">Elections</a>
+        <a href="candidates.html">Candidates</a>
+        <a href="ongoing-elections.html">Ongoing Elections</a>
+        <a href="voters.html" class="active">Vote Now</a>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="card">
+                <div class="instructions">
+                    <h2 id="election-title">Election</h2>
+                    <p>Review candidates and cast your vote responsibly. You may only vote once, and votes cannot be changed after submission.</p>
+                    
+                    <!-- Timer display -->
+                    <div class="timer">
+                        Time Remaining: <span id="countdown-timer">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="voting-container">
+                    <div class="candidate-info">
+                        <h2>Meet the Candidates</h2>
+                        <div class="candidate-grid">
+                            <div class="candidate-card">
+                                <img src="1.jpg" alt="Candidate 1" class="candidate-image">
+                                <div class="candidate-info">
+                                    <h3>Candidate 1</h3>
+                                    <p><strong>Party:</strong> AUB</p>
+                                </div>
+                            </div>
+                            <div class="candidate-card">
+                                <img src="2.jpg" alt="Candidate 2" class="candidate-image">
+                                <div class="candidate-info">
+                                    <h3>Candidate 2</h3>
+                                    <p><strong>Party:</strong> AUB</p>
+                                </div>
+                            </div>
+                            <div class="candidate-card">
+                                <img src="3.jpg" alt="Candidate 3" class="candidate-image">
+                                <div class="candidate-info">
+                                    <h3>Candidate 3</h3>
+                                    <p><strong>Party:</strong> AUB</p>
+                                </div>
+                            </div>
+                            <div class="candidate-card">
+                                <img src="4.jpg" alt="Candidate 4" class="candidate-image">
+                                <div class="candidate-info">
+                                    <h3>Candidate 4</h3>
+                                    <p><strong>Party:</strong> AUB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="voting-controls">
+                        <h2>Cast Your Vote</h2>
+                        <button class="info-button" onclick="showInfo()">Election Info</button>
+                        
+                        <form class="voting-form" id="voteForm">
+                            <div class="radio-group">
+                                <h3>Select a Candidate</h3>
+                                <label class="radio-option">
+                                    <input type="radio" name="candidate" value="Candidate 1" required> Candidate 1 (AUB)
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="candidate" value="Candidate 2"> Candidate 2 (AUB)
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="candidate" value="Candidate 3"> Candidate 3 (AUB)
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="candidate" value="Candidate 4"> Candidate 4 (AUB)
+                                </label>
+                            </div>
+
+                            <div class="confirmation">
+                                <input type="checkbox" id="confirm" name="confirm" required>
+                                <label for="confirm">I verify that my selection is final and I want to submit my vote.</label>
+                            </div>
+
+                            <button type="submit" class="btn">Submit Vote</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage" style="display: none;">
+                    <h2>Thank You for Voting!</h2>
+                    <p>Your vote has been successfully recorded.</p>
+                    <p>Election results will be announced shortly. Stay tuned!</p>
+                    <div style="margin-top: 20px;">
+                        <a href="ongoing-elections.html" class="btn btn-secondary">Back to Elections</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Info Modal -->
+    <div id="electionInfoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Election Information</h3>
+            <div id="modal-content-microsoft" class="modal-election-content">
+                <p>The Microsoft Student Ambassadors program is designed to recognize and nurture student leaders who are passionate about technology. Ambassadors represent Microsoft on campus and organize events, workshops, and learning initiatives.</p>
+                <h4>Requirements for Candidates:</h4>
+                <ul>
+                    <li>Must have completed at least one year at Amity University</li>
+                    <li>Should have experience with Microsoft technologies</li>
+                    <li>Demonstrated leadership skills through past activities</li>
+                    <li>Strong communication and organizational skills</li>
+                </ul>
+                <h4>Election Timeline:</h4>
+                <p>Voting Ends: October 12, 2025 at 11:59 PM</p>
+                <p>Results Announcement: October 14, 2025</p>
+            </div>
+            
+            <div id="modal-content-gdg" class="modal-election-content" style="display:none">
+                <p>The Google Developer Group is a community of developers interested in Google technologies. The elected leadership team will be responsible for organizing events, workshops, and fostering a vibrant tech community on campus.</p>
+                <h4>Requirements for Candidates:</h4>
+                <ul>
+                    <li>Active participation in previous GDG events</li>
+                    <li>Knowledge of Google technologies and platforms</li>
+                    <li>Strong organizational and team management skills</li>
+                    <li>Ability to coordinate with external partners and speakers</li>
+                </ul>
+                <h4>Election Timeline:</h4>
+                <p>Voting Ends: October 8, 2025 at 11:59 PM</p>
+                <p>Results Announcement: October 10, 2025</p>
+            </div>
+            
+            <div id="modal-content-college" class="modal-election-content" style="display:none">
+                <p>The Amity College Council is the official representative body of students that works with university administration to address student concerns, organize events, and improve campus life.</p>
+                <h4>Requirements for Candidates:</h4>
+                <ul>
+                    <li>Good academic standing with minimum CGPA of 3.0</li>
+                    <li>No disciplinary actions on record</li>
+                    <li>Active participation in at least one campus organization</li>
+                    <li>Completed at least one full semester at Amity</li>
+                </ul>
+                <h4>Election Timeline:</h4>
+                <p>Voting Ends: October 15, 2025 at 5:00 PM</p>
+                <p>Results Announcement: October 17, 2025</p>
+            </div>
+            
+            <div id="modal-content-ieee" class="modal-election-content" style="display:none">
+                <p>The IEEE Student Branch connects students with the global IEEE community, providing access to technical resources, career development opportunities, and a platform to develop technical and professional skills.</p>
+                <h4>Requirements for Candidates:</h4>
+                <ul>
+                    <li>Active IEEE membership</li>
+                    <li>Participation in previous IEEE events</li>
+                    <li>Good academic standing in technical courses</li>
+                    <li>Demonstrated leadership or organizational skills</li>
+                </ul>
+                <h4>Election Timeline:</h4>
+                <p>Voting Ends: October 16, 2025 at 11:59 PM</p>
+                <p>Results Announcement: October 18, 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-media">
+            <a href="https://www.facebook.com">Facebook</a> |
+            <a href="https://twitter.com">Twitter</a> |
+            <a href="https://www.instagram.com">Instagram</a> |
+            <a href="https://www.linkedin.com">LinkedIn</a> |
+            <a href="https://www.youtube.com">YouTube</a>
+        </div>
+        <p>Election Rules:</p>
+        <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+            <li>⁙ Each student may vote only once</li>
+            <li>⁙ Votes cannot be changed after submission</li>
+            <li>⁙ Results will be announced after voting closes</li>
+        </ul>
+        <p>For assistance, contact: <a href="mailto:elections@amitybengaluru.edu.in">elections@amitybangalore.edu.in</a></p>
+        <p>&copy; 2025 Amity University Bengaluru. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Get URL parameters to display username and election type
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            if (username) {
+                document.getElementById('userDisplay').textContent = 'Welcome, ' + username + '!';
+            }
+            
+            // Get election type and update page content
+            const electionType = urlParams.get('election') || 'college';
+            updateElectionContent(electionType);
+            
+            // Start countdown timer
+            startCountdown(electionType);
+        }
+        
+        // Show info modal
+        function showInfo() {
+            document.getElementById('electionInfoModal').style.display = 'block';
+        }
+        
+        // Close info modal
+        function closeModal() {
+            document.getElementById('electionInfoModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('electionInfoModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Update election content based on election type
+        function updateElectionContent(electionType) {
+            // Set election title
+            const titleMapping = {
+                'microsoft': 'Microsoft Student Ambassador Election',
+                'gdg': 'Google Developer Group (GDG) Elections',
+                'college': 'Amity College Council Election',
+                'ieee': 'IEEE Student Branch Elections'
+            };
+            
+            document.getElementById('election-title').textContent = titleMapping[electionType] || 'College Election';
+            
+            // Show relevant modal content and hide others
+            document.querySelectorAll('.modal-election-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            const modalContent = document.getElementById(`modal-content-${electionType}`);
+            if (modalContent) {
+                modalContent.style.display = 'block';
+            } else {
+                document.getElementById('modal-content-college').style.display = 'block';
+            }
+            
+            document.getElementById('modal-title').textContent = titleMapping[electionType] + ' Information';
+        }
+        
+        // Start countdown timer
+        function startCountdown(electionType) {
+            // Set end dates for each election type
+            const endDates = {
+                'microsoft': new Date('June 6, 2025 23:59:59').getTime(),
+                'gdg': new Date('June 6, 2025 23:59:59').getTime(),
+                'college': new Date('June 6, 2025 17:00:00').getTime(),
+                'ieee': new Date('June 6, 2025 23:59:59').getTime()
+            };
+            
+            const endDate = endDates[electionType] || endDates['college'];
+            
+            // Update timer every second
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                const timerElement = document.getElementById('countdown-timer');
+                
+                if (distance < 0) {
+                    clearInterval(timer);
+                    timerElement.innerHTML = "VOTING CLOSED";
+                    document.getElementById('voteForm').innerHTML = "<p>Voting for this election has closed. Results will be announced soon.</p>";
+                } else {
+                    timerElement.innerHTML = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+                }
+            }, 1000);
+        }
+        
+        document.getElementById('voteForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const form = document.getElementById('voteForm');
+            const successMessage = document.getElementById('successMessage');
+
+            // Save vote (optional)
+            const selected = document.querySelector('input[name="candidate"]:checked');
+            if (selected) {
+                localStorage.setItem("vote", selected.value);
+            }
+
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

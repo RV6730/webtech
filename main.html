@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Amity University Student Portal</title>
+    <link rel="stylesheet" href="student-portal-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div>
+                <img src="logo.png" alt="Amity University Logo" width="160">
+                <h1><b>AMITY UNIVERSITY BENGALURU</b></h1>
+                <h2>Student Portal Dashboard</h2>
+            </div>
+            <div class="user-display">
+                <span id="userDisplay">Welcome, Student!</span>
+                <a href="login.html" class="btn logout-btn">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="main.html" class="active">Dashboard</a>
+        <a href="candidates.html">Election</a>
+        <a href="about.html">About</a>
+        <a href="news.html">News</a>
+        <a href="other.html">Other</a>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="card">
+                <h2>Welcome to the Student Portal</h2>
+                <p>This portal provides access to various student services and university resources. Use the navigation menu to explore different sections.</p>
+                
+                <div class="success-message">
+                    <p>You have successfully logged in! Explore the portal to access student services.</p>
+                </div>
+            </div>
+
+           <div class="main-content" style="display: flex; flex-direction: row; gap: 30px;">
+    <div class="services-box" style="flex: 1;">
+        <h2>STUDENT SERVICES</h2>
+        
+        <div class="service-item">
+            <h3>ACADEMIC SERVICES</h3>
+            <ul>
+                <li>Course Registration Portal</li>
+                <li>Grade Tracking System</li>
+                <li>Academic Advising</li>
+                <li>Digital Library Access</li>
+                <li>Research Support</li>
+            </ul>
+        </div>
+        
+        <div class="service-item">
+            <h3>STUDENT LIFE</h3>
+            <ul>
+                <li>50+ Clubs & Organizations</li>
+                <li>Sports Facilities Booking</li>
+                <li>Cultural Events Calendar</li>
+                <li>Student Housing Portal</li>
+                <li>Cafeteria Menu & Orders</li>
+            </ul>
+        </div>
+        
+        <div class="service-item">
+            <h3>ADMINISTRATIVE</h3>
+            <ul>
+                <li>Online Fee Payment</li>
+                <li>Document Request System</li>
+                <li>Scholarship Portal</li>
+                <li>Student Services</li>
+                <li>ID Card Services</li>
+            </ul>
+        </div>
+        
+        <div class="service-item">
+            <h3>CAREER SERVICES</h3>
+            <ul>
+                <li>Internship Opportunities</li>
+                <li>Campus Recruitment</li>
+                <li>Resume Builder Tool</li>
+                <li>Mock Interview Sessions</li>
+                <li>Alumni Network</li>
+            </ul>
+        </div>
+    </div>
+    <div class="image-box" style="flex: 1; display: flex; flex-direction: column; gap: 20px; align-items: center; justify-content: center;">
+        <img src="amity.jpg" alt="Amity University Campus" style="max-width: 100%; height: auto; border-radius: 8px;">
+        <img src="amity1.jpg" alt="University Library" style="max-width: 100%; height: auto; border-radius: 8px;">
+        <img src="amity2.jpg" alt="Students on Campus" style="max-width: 100%; height: auto; border-radius: 8px;">
+       <img src="amity3.jpg" alt="Students on Campus" style="max-width: 100%; height: auto; border-radius: 8px;">
+    </div>
+</div>
+</div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 Amity University Bengaluru. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="social-media">
+                <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get URL parameters to display username if available
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            if (username) {
+                document.getElementById('userDisplay').textContent = 'Welcome, ' + username + '!';
+            }
+        }
+    </script>
+</body>
+</html>
