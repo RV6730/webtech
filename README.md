@@ -72,17 +72,18 @@ webtech/
 ├── login.html              # Login page
 ├── signup.html             # Registration page
 ├── candidates.html         # Election candidates
-├── vott.html              # Voting page
+├── vott.html               # Voting interface
+├── ass(vote).html          # Voting page (alternative)
 ├── ongoing-elections.html  # Active elections
-├── voters.html            # Voter information
-├── about.html             # About page
-├── news.html              # News and updates
-├── other.html             # Additional resources
-├── rule.html              # Rules and regulations
+├── voters.html             # Voter information
+├── about.html              # About page
+├── news.html               # News and updates
+├── other.html              # Additional resources
+├── rule.html               # Rules and regulations
 ├── student-portal-styles.css  # Main stylesheet
-├── election-styles.css    # Election-specific styles
-├── vott-styles.css        # Voting page styles
-├── css1.css               # Additional styles
+├── election-styles.css     # Election-specific styles
+├── vott-styles.css         # Voting page styles
+├── css1.css                # Additional styles
 ├── logo.png               # University logo
 ├── *.jpg                  # Images and graphics
 └── README.md              # This file
@@ -118,12 +119,12 @@ webtech/
 
 © 2025 Amity University Bengaluru. All Rights Reserved.
 
-## 👥 Contact
+## 👥 Support & Contact
 
-For questions or support, please contact:
-- Privacy Policy
-- Terms of Service
-- Contact Us
+For more information about the student portal:
+- Visit the [website](https://rv6730.github.io/webtech/) after deployment
+- Check the footer links for Privacy Policy, Terms of Service, and Contact information
+- Submit issues via the [GitHub repository](https://github.com/RV6730/webtech/issues)
 
 ---
 
