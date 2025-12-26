@@ -4,7 +4,9 @@ Welcome to the Amity University Student Portal - a comprehensive web-based platf
 
 ## 🌐 Live Website
 
-The website is deployed and accessible at: **https://rv6730.github.io/webtech/**
+**🔗 Website URL: [https://rv6730.github.io/webtech/](https://rv6730.github.io/webtech/)**
+
+> **Note**: After merging this PR and enabling GitHub Pages in repository settings, the website will be live at the above URL. See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed setup instructions.
 
 ## 📋 Features
 
@@ -17,6 +19,15 @@ The website is deployed and accessible at: **https://rv6730.github.io/webtech/**
 ## 🚀 Deployment
 
 This website is deployed using GitHub Pages. The deployment is automatic from the main branch.
+
+**📖 For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)**
+
+### Quick Setup:
+
+1. Merge this PR to the main branch
+2. Go to repository Settings → Pages
+3. Set Source to "GitHub Actions"
+4. Website will be live at: https://rv6730.github.io/webtech/
 
 ### Deployment Steps:
 
