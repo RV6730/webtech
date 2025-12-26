@@ -14,6 +14,7 @@ Welcome to the Amity University Student Portal - a comprehensive web-based platf
 - **Election System**: View and participate in university elections
 - **News & Updates**: Stay informed about campus news and events
 - **Login/Signup System**: User authentication for personalized access
+- **Database Viewer**: View and manage all data stored in the browser's local storage
 - **Responsive Design**: Mobile-friendly interface
 
 ## 🚀 Deployment
@@ -107,6 +108,43 @@ webtech/
 - **News**: Campus news and updates
 - **Rules**: Election rules and regulations
 - **Other**: Additional resources
+
+## 📊 How to View Stored Data
+
+This application uses **browser localStorage** to store data such as votes, user preferences, and application state. To view all stored data:
+
+### Method 1: Using the Built-in Database Viewer (Recommended)
+1. Open the website in your browser
+2. Click on **"Open Database Viewer"** button on the home page, or
+3. Navigate to `database-viewer.html` directly, or
+4. From the main dashboard, click on **"Database Viewer"** in the navigation menu
+
+The Database Viewer provides:
+- **View All Data**: See all localStorage items in a formatted table
+- **Statistics**: Total items, storage size, and last update time
+- **Individual Item View**: Click "View" to see the full content of any item
+- **Export**: Download all data as a JSON file for backup
+- **Delete**: Remove individual items or clear all data
+- **Refresh**: Update the view with the latest data
+
+### Method 2: Using Browser Developer Tools
+If you prefer to use browser developer tools:
+1. Open your browser's Developer Tools (F12 or Right-click → Inspect)
+2. Go to the **Application** tab (Chrome/Edge) or **Storage** tab (Firefox)
+3. In the left sidebar, expand **Local Storage**
+4. Click on your website's domain to view all stored data
+
+### What Data is Stored?
+The application stores:
+- **Votes**: Selected candidates in elections (key: "vote")
+- **User Sessions**: Username and login state
+- **Application State**: Various UI preferences and settings
+
+### Data Privacy
+- All data is stored locally in your browser
+- No data is sent to external servers
+- You can clear all data at any time using the Database Viewer's "Clear All" button
+- Data persists until you clear it or clear your browser cache
 
 ## 🛠️ Technologies Used
 

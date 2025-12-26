@@ -55,5 +55,35 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        // Pre-fill username if coming from signup
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            if (username) {
+                document.getElementById('username').value = username;
+            }
+        };
+
+        // Handle login form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            
+            // Save login session to localStorage
+            const sessionData = {
+                username,
+                lastLogin: new Date().toISOString(),
+                isLoggedIn: true
+            };
+            
+            localStorage.setItem('currentSession', JSON.stringify(sessionData));
+            
+            // Redirect to main page
+            window.location.href = 'main.html?username=' + encodeURIComponent(username);
+        });
+    </script>
 </body>
 </html>
