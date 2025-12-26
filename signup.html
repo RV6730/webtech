@@ -68,5 +68,42 @@
         <p>&copy; 2025 Amity University Bengaluru.All rights reserved.</p>
         <p>Email: info@amitybangalore.edu.in | Phone: +91 80 1234 5678 | Address: Bangalore 560100</p>
     </footer>
+
+    <script>
+        // Handle signup form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullname = document.getElementById('fullname').value;
+            const sen = document.getElementById('sen').value;
+            const phonenumber = document.getElementById('phonenumber').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            // Validate password match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Save user data to localStorage
+            const userData = {
+                fullname: fullname,
+                sen: sen,
+                phonenumber: phonenumber,
+                email: email,
+                registeredAt: new Date().toISOString()
+            };
+            
+            // Store in localStorage (in real app, password should be hashed)
+            localStorage.setItem('userRegistration', JSON.stringify(userData));
+            localStorage.setItem('registeredEmail', email);
+            localStorage.setItem('registeredSEN', sen);
+            
+            // Redirect to login page
+            window.location.href = 'login.html?username=' + encodeURIComponent(email);
+        });
+    </script>
 </body>
 </html>
