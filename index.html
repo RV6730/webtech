@@ -100,6 +100,33 @@
             font-size: 0.9rem;
             text-align: center;
         }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .database-viewer-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .database-viewer-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .database-viewer-section p {
+            margin-bottom: 15px;
+        }
+
+        .database-viewer-btn {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            font-size: 1rem;
+            padding: 12px 30px;
+        }
     </style>
 </head>
 <body>
@@ -125,15 +152,15 @@
                     <img src="amity2.jpg" alt="Modern Classroom" class="feature-image">
                 </div>
                 
-                <div style="margin-top: 30px;">
+                <div class="button-container">
                     <a href="login.html" class="landing-btn login-btn">Login</a>
                     <a href="signup.html" class="landing-btn register-btn">Register</a>
                 </div>
                 
-                <div style="margin-top: 40px; padding: 20px; background-color: rgba(255, 255, 255, 0.1); border-radius: 8px; border: 2px solid rgba(102, 126, 234, 0.3);">
-                    <h3 style="color: #667eea; margin-bottom: 15px;">📊 View Stored Data</h3>
-                    <p style="margin-bottom: 15px;">Access the Database Viewer to see all data stored in your browser's local storage, including votes, user information, and application data.</p>
-                    <a href="database-viewer.html" class="landing-btn" style="background: linear-gradient(to right, #667eea, #764ba2); font-size: 1rem; padding: 12px 30px;">Open Database Viewer</a>
+                <div class="database-viewer-section">
+                    <h3>📊 View Stored Data</h3>
+                    <p>Access the Database Viewer to see all data stored in your browser's local storage, including votes, user information, and application data.</p>
+                    <a href="database-viewer.html" class="landing-btn database-viewer-btn">Open Database Viewer</a>
                 </div>
             </div>
         </div>
