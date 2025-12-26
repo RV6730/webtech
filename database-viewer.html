@@ -265,7 +265,7 @@
             <a href="https://www.youtube.com">YouTube</a>
         </div>
         <p>Database Viewer - LocalStorage Management Tool</p>
-        <p>For assistance, contact: <a href="mailto:elections@amitybengaluru.edu.in">elections@amitybangalore.edu.in</a></p>
+        <p>For assistance, contact: <a href="mailto:elections@amitybengaluru.edu.in">elections@amitybengaluru.edu.in</a></p>
         <p>&copy; 2025 Amity University Bengaluru. All rights reserved.</p>
     </footer>
 
@@ -325,11 +325,25 @@
                     <td>${item.type}</td>
                     <td>${item.size}</td>
                     <td>
-                        <button class="info-button" style="padding: 5px 10px; font-size: 12px;" onclick="viewItem('${escapeHtml(item.key)}')">View</button>
-                        <button class="clear-btn" style="padding: 5px 10px; font-size: 12px; margin-left: 5px;" onclick="deleteItem('${escapeHtml(item.key)}')">Delete</button>
+                        <button class="info-button view-btn" style="padding: 5px 10px; font-size: 12px;" data-key="${escapeHtml(item.key)}">View</button>
+                        <button class="clear-btn delete-btn" style="padding: 5px 10px; font-size: 12px; margin-left: 5px;" data-key="${escapeHtml(item.key)}">Delete</button>
                     </td>
                 `;
                 tbody.appendChild(row);
+            });
+            
+            // Add event listeners to View buttons
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    viewItem(this.getAttribute('data-key'));
+                });
+            });
+            
+            // Add event listeners to Delete buttons
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    deleteItem(this.getAttribute('data-key'));
+                });
             });
         }
         
