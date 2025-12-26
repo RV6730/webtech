@@ -87,19 +87,16 @@
                 return;
             }
             
-            // Save user data to localStorage
+            // Save user data to localStorage (note: password is NOT stored for security)
             const userData = {
-                fullname: fullname,
-                sen: sen,
-                phonenumber: phonenumber,
-                email: email,
+                fullname,
+                sen,
+                phonenumber,
+                email,
                 registeredAt: new Date().toISOString()
             };
             
-            // Store in localStorage (in real app, password should be hashed)
             localStorage.setItem('userRegistration', JSON.stringify(userData));
-            localStorage.setItem('registeredEmail', email);
-            localStorage.setItem('registeredSEN', sen);
             
             // Redirect to login page
             window.location.href = 'login.html?username=' + encodeURIComponent(email);

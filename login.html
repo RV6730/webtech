@@ -71,19 +71,15 @@
             e.preventDefault();
             
             const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
             
-            // Save login data to localStorage
-            const loginData = {
-                username: username,
+            // Save login session to localStorage
+            const sessionData = {
+                username,
                 lastLogin: new Date().toISOString(),
                 isLoggedIn: true
             };
             
-            localStorage.setItem('currentUser', JSON.stringify(loginData));
-            localStorage.setItem('username', username);
-            localStorage.setItem('lastLogin', loginData.lastLogin);
-            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentSession', JSON.stringify(sessionData));
             
             // Redirect to main page
             window.location.href = 'main.html?username=' + encodeURIComponent(username);
