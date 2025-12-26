@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const voteController = require('../controllers/voteController');
 const auth = require('../middleware/auth');
+const { voteLimiter } = require('../middleware/rateLimiter');
 
 // @route   POST /api/votes
 // @desc    Submit a vote
 // @access  Private
-router.post('/', auth, voteController.submitVote);
+router.post('/', auth, voteLimiter, voteController.submitVote);
 
 // @route   GET /api/votes/my-votes
 // @desc    Get user's votes

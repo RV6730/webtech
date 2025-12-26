@@ -30,7 +30,6 @@
                 <h2>Create Your Account</h2>
                 <p>Register to access the student portal services</p>
                 <div id="error-message" style="color: red; margin-bottom: 10px; display: none;"></div>
-                <div id="success-message" style="color: green; margin-bottom: 10px; display: none;"></div>
                 <form id="signupForm">
                     <label for="fullname">Full Name:</label>
                     <input type="text" id="fullname" name="fullname" required>
@@ -87,12 +86,10 @@
             
             const confirmPassword = document.getElementById('confirm-password').value;
             const errorMessage = document.getElementById('error-message');
-            const successMessage = document.getElementById('success-message');
             const submitBtn = e.target.querySelector('button[type="submit"]');
             
             // Reset messages
             errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
             
             // Validate passwords match
             if (formData.password !== confirmPassword) {
@@ -107,9 +104,7 @@
             
             try {
                 const response = await authAPI.register(formData);
-                successMessage.textContent = 'Registration successful! Redirecting to login...';
-                successMessage.style.display = 'block';
-                showMessage('Registration successful!', 'success');
+                showMessage('Registration successful! Redirecting to login...', 'success');
                 
                 // Redirect to login page after short delay
                 setTimeout(() => {
