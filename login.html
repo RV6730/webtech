@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Amity University Student Portal</title>
     <link rel="stylesheet" href="student-portal-styles.css">
+    <script src="api.js"></script>
 </head>
 <body>
     <header>
@@ -28,7 +29,8 @@
             <div class="login-container">
                 <h2>Login to Your Account</h2>
                 <p>Access the student portal with your credentials</p>
-                <form action="main.html" method="GET">
+                <div id="error-message" style="color: red; margin-bottom: 10px; display: none;"></div>
+                <form id="loginForm">
                     <label for="username">University Username / SEN No.:</label>
                     <input type="text" id="username" name="username" required>
                 
@@ -55,5 +57,37 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Disable submit button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Logging in...';
+            errorMessage.style.display = 'none';
+            
+            try {
+                const response = await authAPI.login({ username, password });
+                showMessage('Login successful! Redirecting...', 'success');
+                
+                // Redirect to main page after short delay
+                setTimeout(() => {
+                    window.location.href = '/main.html';
+                }, 1000);
+            } catch (error) {
+                errorMessage.textContent = error.message || 'Login failed. Please check your credentials.';
+                errorMessage.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Login';
+            }
+        });
+    </script>
 </body>
 </html>

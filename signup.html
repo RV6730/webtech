@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - Amity University Student Portal</title>
     <link rel="stylesheet" href="student-portal-styles.css">
+    <script src="api.js"></script>
 </head>
 <body>
     <header>
@@ -28,7 +29,9 @@
             <div class="registration-container">
                 <h2>Create Your Account</h2>
                 <p>Register to access the student portal services</p>
-                <form action="login.html" method="GET">
+                <div id="error-message" style="color: red; margin-bottom: 10px; display: none;"></div>
+                <div id="success-message" style="color: green; margin-bottom: 10px; display: none;"></div>
+                <form id="signupForm">
                     <label for="fullname">Full Name:</label>
                     <input type="text" id="fullname" name="fullname" required>
                     
@@ -68,5 +71,57 @@
         <p>&copy; 2025 Amity University Bengaluru.All rights reserved.</p>
         <p>Email: info@amitybangalore.edu.in | Phone: +91 80 1234 5678 | Address: Bangalore 560100</p>
     </footer>
+
+    <script>
+        // Handle signup form submission
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                fullname: document.getElementById('fullname').value,
+                sen: document.getElementById('sen').value,
+                phonenumber: document.getElementById('phonenumber').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+            
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Reset messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            // Validate passwords match
+            if (formData.password !== confirmPassword) {
+                errorMessage.textContent = 'Passwords do not match!';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            // Disable submit button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Registering...';
+            
+            try {
+                const response = await authAPI.register(formData);
+                successMessage.textContent = 'Registration successful! Redirecting to login...';
+                successMessage.style.display = 'block';
+                showMessage('Registration successful!', 'success');
+                
+                // Redirect to login page after short delay
+                setTimeout(() => {
+                    window.location.href = '/login.html';
+                }, 2000);
+            } catch (error) {
+                errorMessage.textContent = error.message || 'Registration failed. Please try again.';
+                errorMessage.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Register Now';
+            }
+        });
+    </script>
 </body>
 </html>

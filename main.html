@@ -6,6 +6,7 @@
     <title>Home - Amity University Student Portal</title>
     <link rel="stylesheet" href="student-portal-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="api.js"></script>
 </head>
 <body>
     <header>
@@ -17,7 +18,7 @@
             </div>
             <div class="user-display">
                 <span id="userDisplay">Welcome, Student!</span>
-                <a href="login.html" class="btn logout-btn">Logout</a>
+                <a href="#" class="btn logout-btn" id="logoutBtn">Logout</a>
             </div>
         </div>
     </header>
@@ -116,14 +117,11 @@
     </footer>
 
     <script>
-        // Get URL parameters to display username if available
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const username = urlParams.get('username');
-            if (username) {
-                document.getElementById('userDisplay').textContent = 'Welcome, ' + username + '!';
-            }
-        }
+        // Handle logout
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            authAPI.logout();
+        });
     </script>
 </body>
 </html>
